@@ -1,0 +1,25 @@
+version: '3.1' # flink-practice
+services:
+  node1:
+    image: flink-practice:1.0.0
+    container_name: flink-node1
+    hostname: flink-node1 
+    command: bash
+    tty: true
+    # environment:
+    #   - 
+    ulimits:
+      memlock:
+        soft: -1 #ulimits soft=-1
+        hard: -1
+    volumes:
+     - ~/Workspace/docker/flink/flink_docker/flink_node1:/root/workspace
+    #ports:
+    #  - 9200:9200
+    networks:
+      kafkanet: # 동일하게 사용
+        aliases:
+          - wshid-zk001
+          - wshid-flink001
+networks:
+  kafkanet:
